@@ -24,12 +24,13 @@ public class ShowCities extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setHeader("Cache-Control", "no-cache");
 		response.setHeader("Pragma", "no-cache");
-		String cityType = request.getParameter("cityType");
+
+		// get the objects from the backend
 		Collection<City> cities = util.getCityMap().values();
+		// add them to the request
 		request.setAttribute("cities", cities);
-
 		String outputPage = "/WEB-INF/results/cities.jsp";
-
+		// include the output page in the response
 		RequestDispatcher dispatcher = request.getRequestDispatcher(outputPage);
 		dispatcher.include(request, response);
 	}
